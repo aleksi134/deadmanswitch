@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+	<title>kuolleen miehen kytkin</title>
+	<style>
+		body {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	
+	<h1 id="numerot"></h1>
+	
+	<button onclick="kaynnista()" id="käynnistä">Käynnistä</button>
+
+	<script>
+		const sekunnitmax = prompt("Miten monta sekunttia haluat ennen hälytystä");
+		let sekunnit = sekunnitmax;
+		let toiminnassa = false;
+
+		let halytys = new Audio('song.mp3');
+		
+		function kaynnista() {
+			if (toiminnassa === false) {
+				document.getElementById("käynnistä").innerText = "Nollaa";
+				toiminnassa = true;
+				sekunnit = sekunnitmax;
+			let laskuri = setInterval(() => {
+				document.getElementById("numerot").innerHTML = sekunnit;
+				sekunnit--;
+			if (sekunnit < 0) {
+				alert("JUMALAUTA SAATANA");
+				clearInterval(laskuri);
+				halytys.play();
+				toiminnassa = false;
+				document.getElementById("käynnistä").innerText = "Käynnistä";
+			}
+			
+		}, 1000);
+	} else {
+		sekunnit = sekunnitmax;
+	}
+	}
+	</script>
+</body>
+</html>	
